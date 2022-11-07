@@ -7,9 +7,7 @@ public class App {
 
   public static void printHeadlines() {
     System.out.println("Balogh Csenge | Szoft_II_N | 2022.11.07");
-
     System.out.println("Jelszavak tárolása - repass (refactor)");
-
     System.out.println("Verzió: 0.0.2");
   }
 
@@ -35,21 +33,21 @@ public class App {
 
   public static void tryWriteFile (Store storage) throws IOException {
 
-    // TODO: filewrite nicer, no reset pass.txt 
-    // wannado TODO: write out timestamps (?)
-
-    PrintWriter printWriter = new PrintWriter(new FileWriter("pass.txt"));
+    PrintWriter pw = new PrintWriter(
+      new FileWriter("pass.txt", true)
+    );
 
     if(!storage.isEmpty()) { 
-      printWriter.print(storage.user);
-      printWriter.print(" | ");
-      printWriter.print(storage.pass);
-      printWriter.print(" | ");
-      printWriter.print(storage.place);
-      printWriter.print(" | ");
+      pw.print(storage.user);
+      pw.print(" | ");
+      pw.print(storage.pass);
+      pw.print(" | ");
+      pw.print(storage.place);
+      pw.print(" | ");
+      pw.println();
     }
 
-    printWriter.close();
+    pw.close();
   }
 
   //BIG TODO: clear main() -> own class

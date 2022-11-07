@@ -10,11 +10,6 @@ public class Store {
     this.place = place;
   }
 
-  public String retrieval() {
-    return pass;
-  }
-
-  //TODO:check other 2 fields aswell
   public boolean isEmpty() {
 
     boolean empty = false;

@@ -14,29 +14,27 @@ public class App {
   }
 
   public static void tryWriteFile(
-    String user, String pass, String place
+    Store storage
   ) throws IOException {
 
-    // FIXME: proper name for Store object
     // TODO: filewrite nicer, no reset pass.txt 
-    Store passList = new Store(user, pass, place);
-    FileWriter f = new FileWriter("pass.txt");
-    PrintWriter pwr = new PrintWriter(f);
-    pwr.print(passList.user);
-    if(!passList.hollow()) { pwr.print(passList.retrieval()); }
-    pwr.print(passList.place);
-    pwr.close();
+
+    PrintWriter printWriter = new PrintWriter(new FileWriter("pass.txt"));
+
+    printWriter.print(storage.user);
+    printWriter.print(" | ");
+    printWriter.print(storage.place);
+    printWriter.print(" | ");
+
+    if(!storage.hollow()) { 
+      printWriter.print(storage.retrieval()); 
+    }
+    
+    printWriter.close();
   }
 
-  public void getUserInput() {
-
-  }
-
-  //BIG TODO: clear main() -> own class
-  public static void main(String[] args) {
-
-    printHeadlines();
-
+  public static Store handleUserInput() {
+    //get and store userinput
     Scanner sc = new Scanner(System.in);
 
     System.out.print("Felhasználónév: ");
@@ -49,11 +47,24 @@ public class App {
     String place = sc.nextLine();
 
     sc.close();
+
+    Store storage = new Store(user, pass, place);
+
+    return storage;
+  }
+
+  //BIG TODO: clear main() -> own class
+  public static void main(String[] args) {
+
+    printHeadlines();
+
+    // TODO: reach user input here
+    Store storage = handleUserInput();
     
     try {
-      tryWriteFile(user, pass, place);
+      tryWriteFile(storage);
     } catch (IOException e) {
-        System.err.println("Hiba! A fájlbaírás sikertelen. Keresse meg a fejlesztőt.");
+        System.err.println("Hiba! A fájlbaírás sikertelen");
     }
   }
 

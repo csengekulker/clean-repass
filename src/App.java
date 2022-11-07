@@ -4,57 +4,57 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) {
-        // FIXME: többi kiiras is a kulon metodusba - nevjegy()
-        nevjegy();
-        //Fejrész kiírása
-        System.out.println("Jelszavak");
-        //Verzió kiírása
-        // TODO: vegere verzio 0.0.2 legyen
-        System.out.println("Verzió: 0.0.1");
-        
-        // FIXME: scanner neve
-        Scanner a = new Scanner(System.in);
+  public static void main(String[] args) {
 
-        // FIXME: normalis valtozonevek mondjuk...
-        System.out.print("Felhasználónév: ");
-        String b = a.nextLine();
-        System.out.print("Jelszó: ");
-        String c = a.nextLine();
-        System.out.print("Hely: ");
-        String d = a.nextLine();
+    printHeadlines();
 
-        a.close();
+    Scanner sc = new Scanner(System.in);
 
-        // FIXME: iSiker boolean legyen
-        int iSiker = 0;
-        
-        try {
-            // TODO: kulon metodus: tryWriteFile()
-            /* 
-            A jelszó, a felhasználónév és a 
-            használati helye a passList 
-            objektumban van tárolva            
-            */
-            // FIXME: proper name for Store object
-            Store passList = new Store(b, c, d);
-            FileWriter f = new FileWriter("pass.txt");
-            PrintWriter pwr = new PrintWriter(f);
-            pwr.print(passList.user);
-            if(!passList.hollow()) { pwr.print(passList.retrieval()); }
-            pwr.print(passList.place);
-            pwr.close();
-            iSiker = 1;
-        } catch (IOException e) {
-            System.err.println("Hiba! A fájlbaírás sikertelen. Keresse meg a fejlesztőt.");
-        }
+    System.out.print("Felhasználónév: ");
+    String user = sc.nextLine();
 
-        // FIXME: break lines
-        if(iSiker == 1) { System.out.println("Ok. A kiírás sikeres.");  }else {  System.out.println("Hiba! A kiírás sikertelen"); }
+    System.out.print("Jelszó: ");
+    String pass = sc.nextLine();
 
+    System.out.print("Hely: ");
+    String place = sc.nextLine();
+
+    sc.close();
+
+    // FIXME: iSiker boolean legyen (0 false, 1 true)
+    int iSiker = 0;
+    
+    try {
+        // TODO: kulon metodus: tryWriteFile()
+        /* 
+        A jelszó, a felhasználónév és a 
+        használati helye a passList 
+        objektumban van tárolva            
+        */
+        // FIXME: proper name for Store object
+        // TODO: filewrite nicer, no reset pass.txt 
+        Store passList = new Store(user, pass, place);
+        FileWriter f = new FileWriter("pass.txt");
+        PrintWriter pwr = new PrintWriter(f);
+        pwr.print(passList.user);
+        if(!passList.hollow()) { pwr.print(passList.retrieval()); }
+        pwr.print(passList.place);
+        pwr.close();
+        iSiker = 1;
+    } catch (IOException e) {
+        System.err.println("Hiba! A fájlbaírás sikertelen. Keresse meg a fejlesztőt.");
     }
 
-    public static void nevjegy() {
-        System.out.println("Nagy János");
-    }
+    // FIXME: break lines
+    if(iSiker == 1) { System.out.println("Ok. A kiírás sikeres.");  }else {  System.out.println("Hiba! A kiírás sikertelen"); }
+
+  }
+
+  public static void printHeadlines() {
+      System.out.println("Balogh Csenge | Szoft_II_N | 2022.11.07");
+
+      System.out.println("Jelszavak tárolása - repass (refactor)");
+
+      System.out.println("Verzió: 0.0.2");
+  }
 }

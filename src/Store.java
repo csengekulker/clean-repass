@@ -10,6 +10,8 @@ public class Store {
     public String retrieval() {
         return pass;
     }
+    // FIXME: return bool only once
+    // FIXME: replace method name 'hollow'
     public boolean hollow() {
         if(this.pass == "") {
             return true;

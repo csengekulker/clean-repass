@@ -11,12 +11,12 @@ public class App {
     System.out.println("Verzió: 0.0.2");
   }
 
-  public static Store handleUserInput() {
+  public static User handleUserInput() {
 
     Scanner sc = new Scanner(System.in);
 
     System.out.print("Felhasználónév: ");
-    String user = sc.nextLine();
+    String name = sc.nextLine();
 
     System.out.print("Jelszó: ");
     String pass = sc.nextLine();
@@ -26,23 +26,23 @@ public class App {
 
     sc.close();
 
-    Store storage = new Store(user, pass, place);
+    User user = new User(name, pass, place);
 
-    return storage;
+    return user;
   }
 
-  public static void tryWriteFile (Store storage) throws IOException {
+  public static void tryWriteFile (User user) throws IOException {
 
     PrintWriter pw = new PrintWriter(
       new FileWriter("pass.txt", true)
     );
 
-    if(!storage.isEmpty()) { 
-      pw.print(storage.user);
+    if(!user.isEmpty()) { 
+      pw.print(user.name);
       pw.print(" | ");
-      pw.print(storage.pass);
+      pw.print(user.pass);
       pw.print(" | ");
-      pw.print(storage.place);
+      pw.print(user.place);
       pw.print(" | ");
       pw.println();
     }
@@ -55,10 +55,10 @@ public class App {
 
     printHeadlines();
 
-    Store storage = handleUserInput();
+    User user = handleUserInput();
     
     try {
-      tryWriteFile(storage);
+      tryWriteFile(user);
       System.out.println("A fájlbaírás sikeres.");
     } catch (IOException e) {
       System.err.println("Hiba! A fájlbaírás sikertelen.");

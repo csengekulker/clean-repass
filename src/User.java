@@ -1,11 +1,11 @@
-public class Store {
+public class User {
 
-  String user;
+  String name;
   String pass;
   String place;
 
-  public Store(String user, String pass, String place) {
-    this.user = user;
+  public User(String name, String pass, String place) {
+    this.name = name;
     this.pass = pass;
     this.place = place;
   }
@@ -15,7 +15,7 @@ public class Store {
     boolean empty = false;
 
     if (
-      this.user == "" ||
+      this.name == "" ||
       this.pass == "" ||
       this.place == ""
     ) {

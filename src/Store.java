@@ -13,17 +13,17 @@ public class Store {
   public String retrieval() {
     return pass;
   }
-  
-  // FIXME: return bool only once
-  // FIXME: replace method name 'hollow'
 
   //TODO:check other 2 fields aswell
   public boolean isEmpty() {
 
-    // we assume its not empty
     boolean empty = false;
 
-    if (this.pass == "") {
+    if (
+      this.user == "" ||
+      this.pass == "" ||
+      this.place == ""
+    ) {
       empty = true;
     }
 

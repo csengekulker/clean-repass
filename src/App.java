@@ -13,8 +13,6 @@ public class App {
     System.out.println("Verzió: 0.0.2");
   }
 
-
-
   public static Store handleUserInput() {
 
     Scanner sc = new Scanner(System.in);
@@ -42,15 +40,15 @@ public class App {
 
     PrintWriter printWriter = new PrintWriter(new FileWriter("pass.txt"));
 
-    printWriter.print(storage.user);
-    printWriter.print(" | ");
-
-    // TODO: figure out Store methods
     if(!storage.isEmpty()) { 
-      printWriter.print(storage.retrieval()); 
+      printWriter.print(storage.user);
+      printWriter.print(" | ");
+      printWriter.print(storage.pass);
+      printWriter.print(" | ");
+      printWriter.print(storage.place);
+      printWriter.print(" | ");
     }
-    printWriter.print(storage.place);
-    printWriter.print(" | ");
+
     printWriter.close();
   }
 
